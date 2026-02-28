@@ -34,6 +34,28 @@ public class WarehouseResourceImpl implements WarehouseResource {
   }
 
   @Override
+  public List<Warehouse> searchAndFilterWarehouses(
+      String location,
+      java.math.BigInteger minCapacity,
+      java.math.BigInteger maxCapacity,
+      String sortBy,
+      String sortOrder,
+      java.math.BigInteger page,
+      java.math.BigInteger pageSize) {
+    return warehouseRepository.search(
+        location,
+        minCapacity != null ? minCapacity.intValue() : null,
+        maxCapacity != null ? maxCapacity.intValue() : null,
+        sortBy,
+        sortOrder,
+        page != null ? page.intValue() : 0,
+        pageSize != null ? pageSize.intValue() : 10)
+        .stream()
+        .map(this::toWarehouseResponse)
+        .toList();
+  }
+
+  @Override
   @Transactional
   public Warehouse createANewWarehouseUnit(@NotNull Warehouse data) {
     // Convert API model to domain model

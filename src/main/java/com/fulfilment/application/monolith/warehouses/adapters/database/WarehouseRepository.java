@@ -58,6 +58,44 @@ public class WarehouseRepository implements WarehouseStore, PanacheRepository<Db
     throw new UnsupportedOperationException("Unimplemented method 'remove'");
   }
 
+  public List<com.fulfilment.application.monolith.warehouses.domain.models.Warehouse> search(
+      String location,
+      Integer minCapacity,
+      Integer maxCapacity,
+      String sortBy,
+      String sortOrder,
+      int page,
+      int pageSize) {
+
+    StringBuilder query = new StringBuilder("archivedAt IS NULL");
+    java.util.Map<String, Object> params = new java.util.HashMap<>();
+
+    if (location != null && !location.trim().isEmpty()) {
+      query.append(" AND location = :location");
+      params.put("location", location);
+    }
+    if (minCapacity != null) {
+      query.append(" AND capacity >= :minCapacity");
+      params.put("minCapacity", minCapacity);
+    }
+    if (maxCapacity != null) {
+      query.append(" AND capacity <= :maxCapacity");
+      params.put("maxCapacity", maxCapacity);
+    }
+
+    // Default sort mapping
+    String sortField = "capacity".equals(sortBy) ? "capacity" : "createdAt";
+    String order = "desc".equalsIgnoreCase(sortOrder) ? "DESC" : "ASC";
+    query.append(" ORDER BY ").append(sortField).append(" ").append(order);
+
+    return find(query.toString(), params)
+        .page(page, pageSize)
+        .list()
+        .stream()
+        .map(DbWarehouse::toWarehouse)
+        .toList();
+  }
+
   @Override
   public Warehouse findByBusinessUnitCode(String buCode) {
     DbWarehouse dbWarehouse = find("businessUnitCode", buCode).firstResult();
