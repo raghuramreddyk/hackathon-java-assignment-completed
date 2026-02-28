@@ -161,3 +161,35 @@ throw new WebApplicationException(e.getMessage(), status);
    - Added test for the `WarehouseRepository.update()` defensive guard against updating a non-existent managed entity.
 
 **Outcome**: The `target/jacoco-report/` now shows full coverage across all 4 warehouse packages (`usecases`, `restapi`, `database`, `models`) with 51 total tests passing successfully.
+
+---
+
+## 7. Bonus Task: Warehouse Search & Filter API
+
+**Problem**: The application lacked a dedicated search endpoint to filter warehouses by attributes like location and capacity range, or to support pagination and sorting.
+
+**Fix**: Implemented a dynamic search API following the Open API specification.
+
+**Key Features**:
+- **Filtering**: Search by `location` (exact), `minCapacity`, and `maxCapacity` (range).
+- **Sorting**: Flexible sorting by `createdAt` (default) or `capacity`.
+- **Pagination**: Added `page` and `pageSize` support for efficient data retrieval.
+- **Dynamic Queries**: Used Panache query parameters to safely build JPQL filters at runtime.
+- **Archival Filter**: Automatically excludes archived warehouses from search results.
+
+**Files changed**: `warehouse-openapi.yaml`, `WarehouseRepository.java`, `WarehouseResourceImpl.java`, `WarehouseSearchTest.java`
+
+---
+
+## Summary of All Changes
+
+| # | Feature / Issue | Root Cause | Implementation / Fix |
+|---|---|---|---|
+| 1 | **Optimistic Locking** | Bulk JPQL bypassed `@Version` | Use JPA managed entities + `flush()` |
+| 2 | **Concurrency Testing** | Invalid test data | Updated `ReplaceWarehouseUseCaseTest` |
+| 3 | **Transaction Integrity** | `fireAsync()` triggered early | Synchronous `@Observes(AFTER_SUCCESS)` |
+| 4 | **Input Validation** | Missing null guards for Integers | Added explicit logic to `ReplaceWarehouseUseCase` |
+| 5 | **REST Error Mapping** | Generic 400 for 404 cases | Specific catch blocks for "not found" |
+| 6 | **Test Coverage** | Uncovered REST/Repo paths | Integrated JaCoCo; added `WarehouseResourceImplTest` |
+| 7 | **Search & Filter API** | Missing feature (Bonus) | New OpenAPI search endpoint + Dynamic JPQL |
+
