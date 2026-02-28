@@ -71,7 +71,7 @@ open http://localhost:8080/q/swagger-ui
 After running the tests (`./mvnw clean test`), a JaCoCo coverage report is generated specifically for the `warehouse` domain. You can view the full HTML report by opening this file in your browser:
 
 ```bash
-open target/jacoco-report/index.html
+open jacoco-report/index.html
 ```
 
 ### (Optional) Run in JVM mode

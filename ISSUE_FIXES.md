@@ -160,7 +160,7 @@ throw new WebApplicationException(e.getMessage(), status);
    - Added coverage for `WarehouseRepository.getAll()` verifying archived entries are filtered correctly.
    - Added test for the `WarehouseRepository.update()` defensive guard against updating a non-existent managed entity.
 
-**Outcome**: The `target/jacoco-report/` now shows full coverage across all 4 warehouse packages (`usecases`, `restapi`, `database`, `models`) with 51 total tests passing successfully.
+**Outcome**: The `jacoco-report/` now shows full coverage across all 4 warehouse packages (`usecases`, `restapi`, `database`, `models`) with 51 total tests passing successfully.
 
 ---
 

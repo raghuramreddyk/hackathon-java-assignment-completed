@@ -1,0 +1,9 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+java-code-assignment,com.fulfilment.application.monolith.warehouses.domain.models,Location,0,12,0,0,0,1,0,1,0,1
+java-code-assignment,com.fulfilment.application.monolith.warehouses.domain.models,Warehouse,0,3,0,0,0,1,0,1,0,1
+java-code-assignment,com.fulfilment.application.monolith.warehouses.adapters.database,DbWarehouse,0,37,0,0,0,11,0,2,0,2
+java-code-assignment,com.fulfilment.application.monolith.warehouses.adapters.database,WarehouseRepository,5,106,0,4,1,22,1,7,1,5
+java-code-assignment,com.fulfilment.application.monolith.warehouses.adapters.restapi,WarehouseResourceImpl,1,202,1,11,0,44,1,13,0,8
+java-code-assignment,com.fulfilment.application.monolith.warehouses.domain.usecases,CreateWarehouseUseCase,0,78,0,8,0,18,0,6,0,2
+java-code-assignment,com.fulfilment.application.monolith.warehouses.domain.usecases,ReplaceWarehouseUseCase,0,121,0,18,0,26,0,11,0,2
+java-code-assignment,com.fulfilment.application.monolith.warehouses.domain.usecases,ArchiveWarehouseUseCase,0,39,0,4,0,11,0,4,0,2
