@@ -18,7 +18,7 @@ open http://localhost:8080/q/swagger-ui
 ./mvnw package
 ```
 
-## Before You Begin
+## Completed Features
 
 Read the following documentation to understand the project and recent changes:
 
@@ -26,6 +26,7 @@ Read the following documentation to understand the project and recent changes:
 - [CODE_ASSIGNMENT.md](CODE_ASSIGNMENT.md) — The original assignment tasks
 - [ISSUE_FIXES.md](ISSUE_FIXES.md) — Detailed log of bugs fixed (Concurrency, Transactions, Coverage, etc.)
 - [dbstructure.md](dbstructure.md) — Database schema and referential documentation
+- [jacoco-report/index.html](jacoco-report) — JaCoCo coverage report (97 percent covered)
 
 ---
 
